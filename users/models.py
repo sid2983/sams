@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,Group
 # Create your models here.
 # users/models.py
 
@@ -19,6 +19,9 @@ class CustomUser(AbstractUser):
     
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
+    
+faculty_group, created = Group.objects.get_or_create(name='faculty')
+student_group, created = Group.objects.get_or_create(name='student')
 
 class Student(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
