@@ -3,9 +3,6 @@ from django.contrib.auth.models import AbstractUser,Group
 # Create your models here.
 # users/models.py
 
-
-
-
 class CustomUser(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
     portfolio_links = models.URLField(max_length=200, blank=True)

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load tailwind_filters %}
+
+
+{% block heading %}
+{{ usertype }} Registration
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    
+    {{ user_form | crispy }}
+    {{ faculty_form | crispy }}
+    <input type="submit" value="'Submit">
+</form>
+{% endblock %}
