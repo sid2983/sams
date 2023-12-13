@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load tailwind_filters %}
+
+{% block content %}
+    <h1>Login</h1>
+    <p> Welcome to the  Student Login page!</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ stu_login_form | crispy }}
+        <button type="submit">Login</button>
+{% endblock %}

@@ -37,6 +37,7 @@
 from django import forms
 
 from .models import CustomUser, Student, Faculty
+from django.contrib.auth.forms import AuthenticationForm
 
 class CustomUserForm(forms.ModelForm):
     password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
@@ -91,3 +92,12 @@ class FacultyRegistrationForm(forms.ModelForm):
             'shift': 'Shift',
             'designation': 'Designation',
         }
+
+
+class StudentLoginForm(AuthenticationForm):
+    class Meta:
+        fields = ['username', 'password']
+
+class FacultyLoginForm(AuthenticationForm):
+    class Meta:
+        fields = ['username', 'password']

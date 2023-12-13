@@ -8,10 +8,11 @@
 
 {% block content %}
 <form method="POST">
+    
     {% csrf_token %}
     
-    {{ user_form  }}
-    {{ student_form  }}
+    {{ user_form | crispy }}
+    {{ student_form | crispy }}
     <input type="submit" value="'Submit">
 </form>
 {% endblock %}
