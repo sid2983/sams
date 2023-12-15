@@ -8,6 +8,6 @@ app_name = "home"
 
 urlpatterns = [
     path('',home,name="home"),
-
+    path('new_achievement', create_achievement, name="create achievement"),
     # Add other app URLs here
 ]
