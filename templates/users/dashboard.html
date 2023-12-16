@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard -SAMS {% endblock %}
+
+{% block heading %} Welcome to SAMS, {{ user_name }}! {% endblock %}
+
+{% block content %}
+
+<div>
+    <p> Add a new achievement (Students only) </p>
+    <a href="{% url 'home:create achievement' %}">Add An Achievement</a>
+</div>
+
+<div>
+    <p> View all achievements </p>
+    <a href="{% url 'home:achievements view' %}">View Achievements</a>
+</div>
+
+<div>
+    <p> Review pending achievements (Faculty only) </p>
+    <a href="{% url 'home:pending achievements' %}">Review Pending Achievements</a>
+</div>
+
+<div>
+    <p> Log Out </p>
+    <a href="{% url 'users:logout' %}">Log Out</a>
+</div>
+
+{% endblock %}

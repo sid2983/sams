@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from .forms import StudentRegistrationForm, CustomUserForm, FacultyRegistrationForm
 from .models import CustomUser, Student
 from django.http import HttpResponseRedirect
@@ -130,3 +131,13 @@ def student_logout(request):
     messages.success(request, 'You have been logged out.')
     return HttpResponseRedirect(reverse("home:home"))
 
+@login_required(login_url="/users/studentLogin/")
+def dashboard_view(request):
+    username = request.user.get_full_name()
+
+    return render(request, 'users/dashboard.html', {'user_name': username})
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, 'You have been logged out.')
+    return HttpResponseRedirect(reverse("home:home"))
