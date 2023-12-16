@@ -59,3 +59,8 @@ def view_details(request, achievement_id):
     ]
 
     return render(request, "home/achievement_details.html", {'achievement_details': details})
+
+def view_all(request):
+    achievements = StudentAchievement.objects.filter(approved=1)
+
+    return render(request, 'home/all_achievements.html', {'achievements': achievements})

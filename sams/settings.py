@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'users.apps.UsersConfig',
     "crispy_forms",
-    "crispy_tailwind"
-
+    "crispy_tailwind",
+    "widget_tweaks",
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
