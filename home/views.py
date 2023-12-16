@@ -11,7 +11,7 @@ def home(request):
     print(request.user) # this shows user name in terminal when login is done
     return render(request, 'home/home.html', {'title': 'Home'})
 
-@login_required(login_url="/users/studentLogin/")
+# @login_required(login_url="/users/studentLogin/")
 def create_achievement(request):
     if request.method == 'POST':
         achievement_form = StudentAchievementForm(request.POST, request.FILES)
