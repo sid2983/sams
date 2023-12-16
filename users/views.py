@@ -35,7 +35,7 @@ def student_registration(request):
         user_form = CustomUserForm(request.POST)
         student_form = StudentRegistrationForm(request.POST)
         print('stu works')
-        if user_form.is_valid() and student_form.is_valid():
+        if user_form.is_valid() and student_form.is_valid() and user_form.data != None and student_form.data != None:
             user = user_form.save(commit=False)
             user.set_password(user_form.cleaned_data['password'])
             user.save()
@@ -45,9 +45,11 @@ def student_registration(request):
             student.user = user
             student.save()
             print('stu works')
-
+            print(user_form.data,student_form.data)
             return HttpResponseRedirect(reverse("users:registration_success"))  
         # Redirect to the home page or a specific URL after registration
+        else:
+            print("No data Sent")
     else:
         user_form = CustomUserForm()
         student_form = StudentRegistrationForm()
