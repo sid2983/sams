@@ -12,5 +12,7 @@ urlpatterns = [
     path('pendingAchievements/', view_pending, name="pending achievements"),
     path('achievementDetails/<int:achievement_id>/', view_details, name='achievement details'),
     path('achievements/', view_all, name="achievments view"),
+    path('verifyachievement/<int:achievement_id>/', verify_achievement, name='achievement verification')
+
     # Add other app URLs here
 ]

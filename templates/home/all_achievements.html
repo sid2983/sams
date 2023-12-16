@@ -14,7 +14,7 @@
         <th> Date </th>
         <th> Details </th>
     </thead>
-    {% for achievement in pending %}
+    {% for achievement in achievements %}
     <tr>
         <td> {{ achievement.student.user.first_name }} {{ achievement.student.user.last_name }}</td>
         <td> {{ achievement.event_name }}</td>
