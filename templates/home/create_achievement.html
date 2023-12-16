@@ -1,13 +1,33 @@
 {% extends 'base.html' %}
+{% load tailwind_filters %}
 
 {% block title %} New Achievement {% endblock %}
 
-{% block heading %} Add New Achievement {% endblock %}
+
+
 
 {% block content %} 
+
+
+<div class="flex justify-center items-center p-10 ">
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
+    <div class="grid grid-cols-2 gap-5">
+    {{ form.event_name | as_crispy_field }}
+    {{ form.achievement_type | as_crispy_field }}
+    {{ form.category | as_crispy_field }}
+    {{ form.venue | as_crispy_field }}
+    {{ form.date | as_crispy_field }}
+    {{ form.title | as_crispy_field }}
+    {{ form.desc | as_crispy_field }}
+    {{ form.role | as_crispy_field }}
+    {{ form.file | as_crispy_field }}
+    {{ form.image_url | as_crispy_field }}
+</div>
+<div class="flex flex-col p-2">
+    <input type="submit" value="Submit" class="bg-blue-600 rounded px-4 py-2">
+</div>
 </form>
+
+</div>
 {% endblock %}
