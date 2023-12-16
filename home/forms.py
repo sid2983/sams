@@ -20,3 +20,12 @@ class StudentAchievementForm(forms.ModelForm):
         widgets = {
             'date': widgets.DateInput(attrs={'type': 'date'})
         }
+
+class StudentAchievementVerificationForm(forms.ModelForm):
+    class Meta:
+        model = StudentAchievement
+        fields = ['approved']
+
+        labels = {
+            'approved': "Approve achievement"
+        }
