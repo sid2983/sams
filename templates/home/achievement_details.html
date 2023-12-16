@@ -2,20 +2,43 @@
 {% load home_extras %}
 
 {% block title %} Achievement details {% endblock %}
-
+<br>
 {% block heading %} Achievement details {% endblock %}
 
 {% block content %}
-<table>
-    <thead>
-        <th> Field </th>
-        <th> Value </th>
-    </thead>
-    {% for key, val in achievement_details %}
-    <tr>
-        <td> {{ key }}</td>
-        <td> {{ val }}</td>
-    </tr>
-    {% endfor %}
-</table>
+
+<br><br>
+<div class="relative  sm:rounded-lg">
+    <table class="w-50 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-300">
+            <tr>
+                <th class="px-3 py-3"> Field </th>
+                <th class='px-3 py-3'> Value </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, val in achievement_details %}
+            <tr class="odd:bg-white even:bg-gray-300">
+                <td class="px-3 py-1"> {{ key }}</td>
+                <td class="px-3 py-1 "> {{ val }}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+
+<form id="toggle-approval-form" method="post">
+    {% csrf_token %}
+    <label for="approval-status">Approval Status:</label>
+    <select id="approval-status" name="approval_status">
+        <option value="approved" {% if achievement.approved %}selected{% endif %}>Approved</option>
+        <option value="unapproved" {% if not achievement.approved %}selected{% endif %}>Unapproved</option>
+    </select>
+    <button type="submit">Apply</button>
+</form>
+
+
+
+
 {% endblock %}

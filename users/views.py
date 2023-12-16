@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import StudentRegistrationForm, CustomUserForm, FacultyRegistrationForm
-from .models import CustomUser, Student
+from .models import CustomUser, Student, Faculty
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -10,6 +10,9 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import StudentLoginForm, FacultyLoginForm
 # messages
 from django.contrib import messages
+# groups
+from django.contrib.auth.models import Group
+
 # Create your views here.
 # def studentRegistration(request):
 #     if (request.method == 'POST'):
@@ -40,6 +43,11 @@ def student_registration(request):
             user.set_password(user_form.cleaned_data['password'])
             user.save()
             print('stu works')
+
+             # Assign the user to the 'student' group
+            student_group = Group.objects.get(name='student')
+            user.groups.add(student_group)
+
             # Create a Student instance associated with the user
             student = student_form.save(commit=False)
             student.user = user
@@ -70,6 +78,10 @@ def faculty_registration(request):
             user.set_password(user_form.cleaned_data['password'])
             user.save()
 
+            # Assign the user to the 'faculty' group
+            faculty_group = Group.objects.get(name='faculty')
+            user.groups.add(faculty_group)
+
             faculty = faculty_form.save(commit=False)
             faculty.user = user
             faculty.save()
@@ -90,15 +102,21 @@ def registration_success(request):
 # users/views.py
 
 
+
 def student_login(request):
     if request.method == 'POST':
         form = StudentLoginForm(request, data=request.POST)
         if form.is_valid():
-            user = authenticate(request, **form.cleaned_data)
-            if user is not None:
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None and user.groups.filter(name='student').exists():
                 login(request, user)
-                # Redirect to student dashboard or any other page
-                return HttpResponseRedirect(reverse("users:registration_success")) # sending to same registration success page for example
+                messages.success(request, 'Login successful.')
+                return HttpResponseRedirect(reverse("home:home"))  # Redirect to student dashboard or home page
+            else:
+                messages.error(request, 'Invalid login credentials or you do not have access.')
     else:
         form = StudentLoginForm()
 
@@ -108,15 +126,22 @@ def faculty_login(request):
     if request.method == 'POST':
         form = FacultyLoginForm(request, data=request.POST)
         if form.is_valid():
-            user = authenticate(request, **form.cleaned_data)
-            if user is not None:
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None and user.groups.filter(name='faculty').exists():
                 login(request, user)
-                # Redirect to faculty dashboard or any other page
-                return HttpResponseRedirect(reverse("users:registration_success")) # sending to same registration success page for example
+                messages.success(request, 'Login successful.')
+                return HttpResponseRedirect(reverse("home:home"))  # Redirect to faculty dashboard or home page
+            else:
+                messages.error(request, 'Invalid login credentials or you do not have access.')
     else:
         form = FacultyLoginForm()
 
     return render(request, 'users/faculty_login.html', {'fac_login_form': form})
+
+
 
 #faculty_logout
 def faculty_logout(request):
@@ -130,3 +155,14 @@ def student_logout(request):
     messages.success(request, 'You have been logged out.')
     return HttpResponseRedirect(reverse("home:home"))
 
+def user_is_faculty(user):
+    try:
+        return hasattr(user, 'faculty')
+    except Faculty.DoesNotExist:
+        return False
+    
+def user_is_student(user):
+    try:
+        return hasattr(user, 'student')
+    except Student.DoesNotExist:
+        return False

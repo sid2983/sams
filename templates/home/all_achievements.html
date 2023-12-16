@@ -6,7 +6,7 @@
 {% block heading %} All achievements {% endblock %}
 
 {% block content %}
-<table>
+<table class=''>
     <thead>
         <th> Student Name </th>
         <th> Event Name </th>
@@ -14,13 +14,13 @@
         <th> Date </th>
         <th> Details </th>
     </thead>
-    {% for achievement in pending %}
-    <tr>
+    {% for achievement in achievements %}
+    <tr >
         <td> {{ achievement.student.user.first_name }} {{ achievement.student.user.last_name }}</td>
         <td> {{ achievement.event_name }}</td>
         <td> {{ achievement.achievement_type|achievement_type }}</td>
         <td> {{ achievement.date }}</td>
-        <td> <a href="{% url 'home:achievement details' achievement.id %}">Verify</a></td>
+        <td> <a href="{% url 'home:achievement details' achievement.id %}" class="text-blue-700">Verify</a></td>
     </tr>
     {% endfor %}
 </table>

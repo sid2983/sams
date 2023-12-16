@@ -20,3 +20,4 @@ class StudentAchievement(models.Model):
     image_url = models.URLField()
     approved = models.BooleanField(default=False)
     approved_by = models.ForeignKey(Faculty, on_delete=models.PROTECT, null=True, blank=True)
+    is_pending = models.BooleanField(default=True)

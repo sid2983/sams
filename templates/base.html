@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
 
 
+
     
 </head>
 
@@ -110,6 +111,24 @@
 
 
 
+{% comment %} to render messages {% endcomment %}
+{% if messages %}
+  <ul class="mt-4">
+    {% for message in messages %}
+      {% if message.tags == 'success' %}
+        <li class="bg-green-500 text-white p-2 mb-2">{{ message }}</li>
+      {% elif message.tags == 'info' %}
+        <li class="bg-blue-500 text-white p-2 mb-2">{{ message }}</li>
+      {% elif message.tags == 'warning' %}
+        <li class="bg-yellow-500 text-black p-2 mb-2">{{ message }}</li>
+      {% elif message.tags == 'error' %}
+        <li class="bg-red-500 text-white p-2 mb-2">{{ message }}</li>
+      {% else %}
+        <li class="bg-gray-500 text-white p-2 mb-2">{{ message }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}
 
 
     
