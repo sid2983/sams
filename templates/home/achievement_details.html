@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load home_extras %}
+
+{% block title %} Achievement details {% endblock %}
+
+{% block heading %} Achievement details {% endblock %}
+
+{% block content %}
+<table>
+    <thead>
+        <th> Field </th>
+        <th> Value </th>
+    </thead>
+    {% for key, val in achievement_details %}
+    <tr>
+        <td> {{ key }}</td>
+        <td> {{ val }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

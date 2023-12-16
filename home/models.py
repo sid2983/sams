@@ -7,7 +7,7 @@ class StudentAchievement(models.Model):
         ('1', 'Academic'),
         ('2', 'Non-Academic'),
     )
-    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, unique=False)
     event_name = models.CharField(max_length=255)
     achievement_type = models.CharField(max_length=255, choices=type_choices)
     category = models.CharField(max_length=255)
@@ -19,4 +19,4 @@ class StudentAchievement(models.Model):
     file = models.FileField(upload_to='achievement_files/')
     image_url = models.URLField()
     approved = models.BooleanField(default=False)
-    approved_by = models.OneToOneField(Faculty, on_delete=models.PROTECT, null=True, blank=True)
+    approved_by = models.ForeignKey(Faculty, on_delete=models.PROTECT, null=True, blank=True)
