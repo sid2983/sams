@@ -16,5 +16,6 @@ urlpatterns = [
     path('for_f_achievements/', faculty_view_all, name="faculty_achievments_view"),
     path('for_s_achievements/', student_view_all, name="student_achievments_view"),
     path('toggle-approval/<int:achievement_id>/', toggle_approval, name='toggle_approval'),
+    path('achievements/', view_all, name="achievements view"),
     # Add other app URLs here
 ]
