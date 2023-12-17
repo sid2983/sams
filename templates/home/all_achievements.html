@@ -1,46 +1,36 @@
 {% extends 'base.html' %}
 {% load home_extras %}
-
-{% block title %} All achievements {% endblock %}
-
-{% block heading %} All achievements {% endblock %}
-
+{% block title %}All achievements{% endblock %}
+{% block heading %}All achievements{% endblock %}
 {% block content %}
-<div class="flex flex-1  justify-center">
-
-    <div class="relative sm:rounded-lg overflow-x-auto bg-gray-100 p-4 m-4">
-        <h1 class="font-semibold text-2xl text-center pb-5">Achievement Details</h1>
-        <table class="w-1/2 mx-auto bg-white rounded-full divide-y divide-gray-200">
-            <thead class="bg-slate-800 text-white">
-                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Student Name</th>
-                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Event Name</th>
-                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Achievement Type</th>
-                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date</th>
-                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Details</th>
-            </thead>
-            <tbody class="">
-                {% for achievement in achievements %}
-                <tr class="bg-gray-50">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{ achievement.student.user.first_name }} {{ achievement.student.user.last_name }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ achievement.event_name }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ achievement.achievement_type|achievement_type }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ achievement.date }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <a href="{% url 'home:achievement details' achievement.id %}" class="text-blue-700">Verify</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="flex flex-1  justify-center">
+        <div class="relative sm:rounded-lg overflow-x-auto bg-gray-100 p-4 m-4">
+            <h1 class="font-semibold text-2xl text-center pb-5">Achievement Details</h1>
+            <table class="w-1/2 mx-auto bg-white rounded-full divide-y divide-gray-200">
+                <thead class="bg-slate-800 text-white">
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Student Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Event Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Achievement Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Details</th>
+                </thead>
+                <tbody>
+                    {% for achievement in achievements %}
+                        <tr class="bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{ achievement.student.user.first_name }} {{ achievement.student.user.last_name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ achievement.event_name }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ achievement.achievement_type|achievement_type }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ achievement.date }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <a href="{% url 'home:achievement details' achievement.id %}"
+                                   class="text-blue-700">Verify</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-    
 {% endblock %}
