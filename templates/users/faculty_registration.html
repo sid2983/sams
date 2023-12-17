@@ -1,26 +1,23 @@
-
 {% extends 'base.html' %}
 {% load tailwind_filters %}
 {% load crispy_forms_tags %}
-
-
-{% block heading %}
-Faculty Registration
-{% endblock %}
-
+{% block heading %}Faculty Registration{% endblock %}
 {% block content %}
-<section class=" py-1 bg-blueGray-50">
-  <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
-    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-        <form method="POST">
-            {% csrf_token %}    
-            {{ user_form|crispy}}
-            {{ faculty_form|crispy}}
-            <input type="submit" value="Submit" class="bg-blue-500 p-2 rounded-md text-sm font-semibold text-white mx-auto block">
-        </form>
+  <section class=" py-1 bg-gray-50">
+    <h1 class="text-center text-2xl font-semibold p-4">Faculty Registration</h1>
+    <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
+      <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+        <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+          <form method="POST">
+            {% csrf_token %}
+            {{ user_form|crispy }}
+            {{ faculty_form|crispy }}
+            <input type="submit"
+                   value="Submit"
+                   class="bg-blue-500 p-2 rounded-md text-sm font-semibold text-white mx-auto block">
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 {% endblock %}

@@ -59,7 +59,7 @@ def view_details(request, achievement_id):
 
     achievement_type = 'Academic' if achievement.achievement_type == '1' else 'Non-academic'
     details = [
-        ('Student Name', achievement.student.user.first_name + achievement.student.user.last_name ),
+        ('Student Name', achievement.student.user.first_name+ " " + achievement.student.user.last_name ),
         ('Event Name', achievement.event_name),
         ('Achievement Type', achievement_type),
         ('Category', achievement.category),
@@ -78,7 +78,7 @@ def view_details(request, achievement_id):
 
 @group_required( 'student')
 def student_view_all(request):
-    achievements = get_object_or_404(StudentAchievement,approved=1)
+    achievements = StudentAchievement.objects.filter(approved=1)
 
     return render(request, 'home/all_achievements.html', {'achievements': achievements})
 
