@@ -20,7 +20,7 @@
         <td> {{ achievement.event_name }}</td>
         <td> {{ achievement.achievement_type|achievement_type }}</td>
         <td> {{ achievement.date }}</td>
-        <td> <a href="{% url 'home:achievement details' achievement.id %}">Verify</a></td>
+        <td> <a href="{% url 'home:toggle_approval' achievement.id %}">Verify</a></td>
     </tr>
     {% endfor %}
 </table>
