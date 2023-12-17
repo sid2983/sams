@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser,Group
 # users/models.py
 
 class CustomUser(AbstractUser):
-    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', default='profile_pics/default.png')
     portfolio_links = models.URLField(max_length=200, blank=True)
     department = models.CharField(max_length=100, null=False, blank=False)
     is_active = models.BooleanField(default=True)

@@ -73,14 +73,17 @@ def view_details(request, achievement_id):
         ('Approval status', achievement.approved),
         ('Approved by', approved_by),
     ]
-
-    return render(request, "home/achievement_details.html", {'achievement_details': details})
+    if request.user.groups.filter(name='student').exists():
+        return render(request, "home/achievement_details.html", {'achievement_details': details,'student':True,'achievement_id':achievement_id})
+        
+    return render(request, "home/achievement_details.html", {'achievement_details': details,'achievement_id':achievement_id})
+    
 
 @group_required( 'student')
 def student_view_all(request):
     achievements = StudentAchievement.objects.filter(approved=1)
 
-    return render(request, 'home/all_achievements.html', {'achievements': achievements})
+    return render(request, 'home/all_achievements.html', {'achievements': achievements,'student':True})
 
 @group_required('faculty')
 def faculty_view_all(request):
@@ -90,6 +93,63 @@ def faculty_view_all(request):
 # views.py
 
 
+# @group_required('faculty')
+# def toggle_approval(request, achievement_id):
+#     print('toggle_approval')
+#     achievement = get_object_or_404(StudentAchievement, id=achievement_id)
+#     print(achievement)
+#     print(achievement.approved) 
+#     if request.method == 'POST':
+#         print("HIHBUHVJBNKJBH")
+#         # Get the approval status from the form submission
+#         approval_status = request.POST
+        
+
+#         # Toggle the 'approved' field
+#         achievement.approved = (approval_status == 'approved')
+
+
+#         # Set the 'approved_by' field if approving
+#         if achievement.approved:
+#             achievement.approved_by = request.user.faculty  # Replace with your actual user fetching logic
+
+#         achievement.save()
+
+#         # Redirect back to the achievement details page after toggling approval
+#         return redirect('achievement_details', achievement_id=achievement.id)
+
+#     # Render the achievement details page when the form is not submitted
+#     return render(request, "home/achievement_details.html", {'achievement': achievement})
+
+
+# def toggle_approval(request,achievement_id):
+#     print('toggle_approdfghjyukijuthgrefval')
+#     achievement = get_object_or_404(StudentAchievement, id=achievement_id)
+#     print(achievement_id)
+#     print(achievement)
+#     print(achievement.approved) 
+#     if request.method == 'POST':
+#         print("HIHBUHVJBNKJBH")
+#         # Get the approval status from the form submission
+#         approval_status = request.POST
+        
+
+#         # Toggle the 'approved' field
+#         achievement.approved = (approval_status == 'approved')
+
+
+#         # Set the 'approved_by' field if approving
+#         if achievement.approved:
+#             achievement.approved_by = request.user.faculty  # Replace with your actual user fetching logic
+
+#         achievement.save()
+
+#         # Redirect back to the achievement details page after toggling approval
+#         return redirect('achievement_details', achievement_id=achievement.id)
+
+#     # Render the achievement details page when the form is not submitted
+#     return render(request, "home/achievement_details.html", {'achievement': achievement})
+
 @group_required('faculty')
 def toggle_approval(request, achievement_id):
     print('toggle_approval')
@@ -97,9 +157,10 @@ def toggle_approval(request, achievement_id):
     print(achievement)
     print(achievement.approved) 
     if request.method == 'POST':
+        print("HIHBUHVJBNKJBH")
         # Get the approval status from the form submission
         approval_status = request.POST.get('approval_status')
-        print(approval_status)
+        
 
         # Toggle the 'approved' field
         achievement.approved = (approval_status == 'approved')
@@ -110,9 +171,9 @@ def toggle_approval(request, achievement_id):
             achievement.approved_by = request.user.faculty  # Replace with your actual user fetching logic
 
         achievement.save()
+        return HttpResponseRedirect(reverse('home:achievement details',args=(achievement_id,)))
 
-        # Redirect back to the achievement details page after toggling approval
-        return redirect('achievement_details', achievement_id=achievement.id)
 
-    # Render the achievement details page when the form is not submitted
-    return render(request, "home/achievement_details.html", {'achievement': achievement})
+
+
+    
