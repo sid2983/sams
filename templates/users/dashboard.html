@@ -5,34 +5,97 @@
 {% block heading %} Welcome to SAMS, {{ user_name }}! {% endblock %}
 
 {% block content %}
+<section class="flex flex-1 flex-col">
 
-{% if usertype == "student" %}
-<div>
-    <p> Add a new achievement (Students only) </p>
-    <a href="{% url 'home:create achievement' %}">Add An Achievement</a>
-</div>
 
-<div>
-    <p> View all achievements </p>
-    <a href="{% url 'home:student_achievments_view' %}">View Achievements</a>
-</div>
-{% endif %}
+    {% if usertype == "student" %}
+    <div class="flex flex-1 flex-col">
 
-{% if usertype == "faculty" %}
-<div>
-    <p> View all achievements </p>
-    <a href="{% url 'home:faculty_achievments_view' %}">View Achievements</a>
-</div>
+        <h1 class="text-center font-semibold text-3xl my-7">Student Dashboard</h1>
 
-<div>
-    <p> Review pending achievements (Faculty only) </p>
-    <a href="{% url 'home:faculty_achievments_view' %}">Review Pending Achievements</a>
-</div>
-{% endif %}
+        <div class="flex flex-row justify-center p-10">
+            <div
+                class="max-w-sm mx-5 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Add a new achievement
+                </h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
+                    acquisitions of 2021 so far, in reverse chronological order.</p>
+                <a href="{% url 'home:create achievement' %}"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+                    An Achievement<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg></a>
+            </div>
+            <div
+                class="max-w-sm mx-5 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">View all achievements
+                </h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
+                    acquisitions of 2021 so far, in reverse chronological order.</p>
+                <a href="{% url 'home:student_achievments_view' %}"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">View
+                    Achievements<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg></a>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <a class="m-4 text-white mx-4 lg:text-lg px-3 sm:text-sm bg-blue-600 p-2 rounded-xl mb-4 lg:mb-0"
+            href="{% url 'users:logout' %}">Log Out</a>
+        </div>
+    </div>
+    {% endif %}
 
-<div>
-    <p> Log Out </p>
-    <a href="{% url 'users:logout' %}">Log Out</a>
-</div>
 
+
+    {% if usertype == "faculty" %}
+    <div class="flex flex-1 flex-col">
+
+        <h1 class="text-center font-semibold text-3xl my-7">Faculty Dashboard</h1>
+
+        <div class="flex flex-row justify-center p-10">
+            <div
+                class="max-w-sm mx-5 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">View all achievements
+                </h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
+                    acquisitions of 2021 so far, in reverse chronological order.</p>
+                <a href="{% url 'home:faculty_achievments_view' %}"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">View
+                    Achievements <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg></a>
+            </div>
+            <div
+                class="max-w-sm mx-5 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Review pending
+                    achievements
+                </h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
+                    acquisitions of 2021 so far, in reverse chronological order.</p>
+                <a href="{% url 'home:faculty_achievments_view' %}"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Review
+                    Pending Achievements<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg></a>
+            </div>
+        </div>
+        
+        <div class="flex justify-center">
+            
+            <a class="m-4 text-white mx-4 lg:text-lg px-3 sm:text-sm bg-blue-600 p-2 rounded-xl mb-4 lg:mb-0"
+            href="{% url 'users:logout' %}">Log Out</a>
+        </div>
+    </div>
+    {% endif %}
+
+</section>
 {% endblock %}
