@@ -78,7 +78,7 @@ def view_details(request, achievement_id):
 
 @group_required( 'student')
 def student_view_all(request):
-    achievements = get_object_or_404(StudentAchievement,approved=1)
+    achievements = StudentAchievement.objects.filter(approved=1)
 
     return render(request, 'home/all_achievements.html', {'achievements': achievements})
 
