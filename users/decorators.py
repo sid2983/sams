@@ -37,7 +37,7 @@ def group_required(*group_names):
                     login_url = reverse('users:student_login')
                     message = "You need to be a student to access this page."
                 else:
-                    login_url = '/accounts/login/'  # Default login URL
+                    login_url = reverse('home:home')  # Default login URL
                     message = "You need to be logged in to access this page."
 
                 messages.error(request, message)
