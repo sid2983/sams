@@ -59,7 +59,7 @@ def view_details(request, achievement_id):
 
     achievement_type = 'Academic' if achievement.achievement_type == '1' else 'Non-academic'
     details = [
-        ('Student Name', achievement.student.user.first_name + achievement.student.user.last_name ),
+        ('Student Name', achievement.student.user.first_name+ " " + achievement.student.user.last_name ),
         ('Event Name', achievement.event_name),
         ('Achievement Type', achievement_type),
         ('Category', achievement.category),
