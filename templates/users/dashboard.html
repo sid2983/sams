@@ -6,6 +6,7 @@
 
 {% block content %}
 
+{% if usertype == "student" %}
 <div>
     <p> Add a new achievement (Students only) </p>
     <a href="{% url 'home:create achievement' %}">Add An Achievement</a>
@@ -13,13 +14,21 @@
 
 <div>
     <p> View all achievements </p>
-    <a href="{% url 'home:achievements view' %}">View Achievements</a>
+    <a href="{% url 'home:student_achievments_view' %}">View Achievements</a>
+</div>
+{% endif %}
+
+{% if usertype == "faculty" %}
+<div>
+    <p> View all achievements </p>
+    <a href="{% url 'home:faculty_achievments_view' %}">View Achievements</a>
 </div>
 
 <div>
     <p> Review pending achievements (Faculty only) </p>
-    <a href="{% url 'home:pending achievements' %}">Review Pending Achievements</a>
+    <a href="{% url 'home:faculty_achievments_view' %}">Review Pending Achievements</a>
 </div>
+{% endif %}
 
 <div>
     <p> Log Out </p>
