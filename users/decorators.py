@@ -31,10 +31,10 @@ def group_required(*group_names):
             else:
                 # Redirect to different login URLs based on user type
                 if user_is_student(request.user):
-                    login_url = reverse('users:student_login')
+                    login_url = reverse('users:faculty_login')
                     message = "You need to be a student to access this page."
                 elif user_is_faculty(request.user):
-                    login_url = reverse('users:faculty_login')
+                    login_url = reverse('users:student_login')
                     message = "You need to be a faculty member to access this page."
                 else:
                     login_url = '/accounts/login/'  # Default login URL

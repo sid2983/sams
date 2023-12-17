@@ -3,25 +3,31 @@
 {{title}}
 
 {% block content %}
-    <h1>Home</h1>
-    <p> Welcome to the home page!</p>
-    
-    <a href="/users/studentRegister">Student Register</a>
-    <a href="/users/facultyRegister">Faculty Register</a>
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+<div class="flex flex-col my-6 flex-1">
 
     
+    <div class="flex flex-col items-center md:flex-row my-4 w-4/5 mx-auto">
+        
+        <h1
+        class="text-center antialiased font-sans leading-tight my-auto text-transparent bg-gradient-to-tr from-slate-800 to-cyan-500 bg-clip-text text-xl font-bold text-gray-900 md:text-5xl lg:text-6xl md:ml-4 md:w-1/2">Student Achievements Management System</h1>
+    
+    <img class="w-full mb-4 md:mb-0 md:w-1/2 order-first md:order-last"
+    src="https://s33009.pcdn.co/wp-content/uploads/2022/11/AdobeStock_458033410.jpeg" alt="">
+</div>
+
+<!-- <h1 class="text-center antialiased font-sans leading-tight my-auto text-transparent bg-gradient-to-tr from-slate-800 to-cyan-500 bg-clip-text text-xl font-bold text-gray-900 md:text-5xl lg:text-6xl md:ml-4">How it Works?</h1> -->
+
+
+<div class="flex flex-col items-center sm:flex-row justify-center my-8">
+    <a class="font-semibold text-white mx-4 lg:text-xl sm:text-sm bg-blue-500 p-3 rounded-xl mb-4 lg:mb-0" href="/users/studentRegister">Student Register</a>
+    <a class="font-semibold text-white mx-4 lg:text-xl sm:text-sm bg-blue-500 p-3 rounded-xl" href="/users/facultyRegister">Faculty Register</a>
+</div>
+
+
+
+</div>
+
 {% endblock %}
-
