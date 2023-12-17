@@ -16,7 +16,7 @@ class StudentAchievement(models.Model):
     title = models.CharField(max_length=255)
     desc = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
-    file = models.FileField(upload_to='achievement_files/')
+    file = models.ImageField(upload_to='achievement_files/')
     image_url = models.URLField()
     approved = models.BooleanField(default=False)
     approved_by = models.ForeignKey(Faculty, on_delete=models.PROTECT, null=True, blank=True)
