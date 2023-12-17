@@ -166,7 +166,6 @@ def user_is_student(user):
     try:
         return hasattr(user, 'student')
     except Student.DoesNotExist:
-<<<<<<< HEAD
         return False
 @login_required(login_url="/users/studentLogin/")
 def dashboard_view(request):
@@ -178,6 +177,3 @@ def logout_user(request):
     logout(request)
     messages.success(request, 'You have been logged out.')
     return HttpResponseRedirect(reverse("home:home"))
-=======
-        return False
->>>>>>> c3af2fe (Dashboard code)
