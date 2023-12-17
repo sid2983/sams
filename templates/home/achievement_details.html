@@ -11,10 +11,17 @@
     <table class="w-1/2 mx-auto bg-white rounded-full divide-y divide-gray-200">
         <tbody class="">
             {% for key, val in achievement_details %}
+            
             <tr class="bg-gray-50">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ key }}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ val }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {% if key == 'File' %}
+                    <img src="{{ val.url }}" class="max-w-lg max-h-lg">
+                    {% else %}
+                    {{val}}
+                    {%endif%}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
