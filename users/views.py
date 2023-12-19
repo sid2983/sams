@@ -54,8 +54,8 @@ def student_registration(request):
             student.user = user
             student.save()
             print('stu works')
-            print(user_form.data,student_form.data)
-            return HttpResponseRedirect(reverse("users:registration_success"))  
+            messages.success(request, 'Your account has been created successfully!')
+            return HttpResponseRedirect(reverse("users:student_login"))  
         # Redirect to the home page or a specific URL after registration
         else:
             print("No data Sent")
@@ -88,7 +88,8 @@ def faculty_registration(request):
             faculty.save()
             print('fac works')
             # Redirect to a success page or any other page you prefer
-            return HttpResponseRedirect(reverse("users:registration_success")) # sending to same registration success page for example
+            messages.success(request, 'Your account has been created successfully!')
+            return HttpResponseRedirect(reverse("users:faculty_login")) # sending to same registration success page for example
 
     else:
         user_form = CustomUserForm()
